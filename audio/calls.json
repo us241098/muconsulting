@@ -7,49 +7,49 @@
   "time": "11:42 pm",
   "outcome": "Booking sent to WhatsApp",
   "src": "audio/hotel.mp3",
-  "duration": 36.62,
+  "duration": 39.06,
   "turns": [
    {
     "who": "bot",
     "text": "Namaste! Lakeview Retreat mein aapka swagat hai. Bataiye, main kaise madad karoon?",
     "start": 0.0,
-    "end": 5.177
+    "end": 5.56
    },
    {
     "who": "caller",
     "text": "Haan ji, kal ke liye do rooms chahiye. Lake view wale.",
-    "start": 5.627,
-    "end": 9.108
+    "start": 6.01,
+    "end": 9.574
    },
    {
     "who": "bot",
     "text": "Kal ke liye do lake-view deluxe rooms available hain. Rate ₹6,500 per night hai, breakfast ke saath. Kitne log rahenge, aur kitni raat?",
-    "start": 9.558,
-    "end": 18.247
+    "start": 10.024,
+    "end": 19.313
    },
    {
     "who": "caller",
     "text": "Chaar log, do raat.",
-    "start": 18.697,
-    "end": 20.098
+    "start": 19.763,
+    "end": 21.456
    },
    {
     "who": "bot",
     "text": "Theek hai. Do rooms, do raatein, chaar mehmaan. Total ₹26,000. Kis naam se booking karoon?",
-    "start": 20.548,
-    "end": 27.774
+    "start": 21.906,
+    "end": 29.766
    },
    {
     "who": "caller",
     "text": "Rohit Mehta.",
-    "start": 28.224,
-    "end": 28.908
+    "start": 30.216,
+    "end": 31.199
    },
    {
     "who": "bot",
     "text": "Ho gaya, Rohit ji. Booking confirm hai, details aapke WhatsApp par bhej rahi hoon. Udaipur mein aapka swagat hai!",
-    "start": 29.358,
-    "end": 36.17
+    "start": 31.649,
+    "end": 38.614
    }
   ]
  },
@@ -61,49 +61,49 @@
   "time": "10:05 am",
   "outcome": "Appointment moved, sheet updated",
   "src": "audio/clinic.mp3",
-  "duration": 30.17,
+  "duration": 36.21,
   "turns": [
    {
     "who": "bot",
     "text": "Namaste, main Shanti Dental Clinic se bol rahi hoon. Kya meri baat Sunita ji se ho rahi hai?",
     "start": 0.0,
-    "end": 5.054
+    "end": 6.196
    },
    {
     "who": "caller",
     "text": "Haan, boliye.",
-    "start": 5.504,
-    "end": 6.324
+    "start": 6.646,
+    "end": 7.624
    },
    {
     "who": "bot",
     "text": "Sunita ji, kal subah gyarah baje Doctor Joshi ke saath aapka appointment hai. Kya aap aa paayengi?",
-    "start": 6.774,
-    "end": 12.228
+    "start": 8.074,
+    "end": 14.839
    },
    {
     "who": "caller",
     "text": "Kal toh mushkil hai. Parso ho sakta hai?",
-    "start": 12.678,
-    "end": 14.702
+    "start": 15.289,
+    "end": 19.122
    },
    {
     "who": "bot",
     "text": "Bilkul. Parso subah gyarah baje ya shaam paanch baje ka slot khaali hai. Kaunsa theek rahega?",
-    "start": 15.152,
-    "end": 20.806
+    "start": 19.572,
+    "end": 26.234
    },
    {
     "who": "caller",
     "text": "Shaam paanch baje.",
-    "start": 21.256,
-    "end": 22.232
+    "start": 26.684,
+    "end": 28.109
    },
    {
     "who": "bot",
     "text": "Ho gaya. Aapka appointment parso shaam paanch baje kar diya hai. Reminder WhatsApp par aa jayega. Dhanyavaad!",
-    "start": 22.682,
-    "end": 29.721
+    "start": 28.559,
+    "end": 35.761
    }
   ]
  },
@@ -115,49 +115,49 @@
   "time": "8:15 pm",
   "outcome": "Table added to manager's list",
   "src": "audio/restaurant.mp3",
-  "duration": 27.42,
+  "duration": 30.34,
   "turns": [
    {
     "who": "bot",
     "text": "Good evening, thanks for calling Rooftop Thali House. How can I help?",
     "start": 0.0,
-    "end": 3.991
+    "end": 3.818
    },
    {
     "who": "caller",
     "text": "Hi, I'd like a table for six this Saturday night.",
-    "start": 4.441,
-    "end": 7.148
+    "start": 4.268,
+    "end": 7.401
    },
    {
     "who": "bot",
     "text": "Sure. This Saturday I have a rooftop table at 8 PM, or an indoor table at 9. Which would you prefer?",
-    "start": 7.598,
-    "end": 14.17
+    "start": 7.851,
+    "end": 15.189
    },
    {
     "who": "caller",
     "text": "Rooftop at eight, please.",
-    "start": 14.62,
-    "end": 15.767
+    "start": 15.639,
+    "end": 17.391
    },
    {
     "who": "bot",
     "text": "Done. A rooftop table for six, Saturday at 8 PM. May I have a name for the booking?",
-    "start": 16.217,
-    "end": 21.032
+    "start": 17.841,
+    "end": 23.764
    },
    {
     "who": "caller",
     "text": "It's Anjali.",
-    "start": 21.482,
-    "end": 22.171
+    "start": 24.214,
+    "end": 25.022
    },
    {
     "who": "bot",
     "text": "Thank you, Anjali. You'll get a confirmation on WhatsApp. See you on Saturday!",
-    "start": 22.621,
-    "end": 26.969
+    "start": 25.472,
+    "end": 29.89
    }
   ]
  }

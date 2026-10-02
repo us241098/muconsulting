@@ -35,6 +35,7 @@
   --leaf: #BFDACB;
   --rose: #C4473D;        /* rejected bottle */
   --on-teal: #FFFFFF;
+  --on-mari: #2A1A00;
   --shadow: 0 18px 40px -22px rgba(16, 34, 31, 0.28);
 
   --display: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
@@ -254,9 +255,43 @@ section { padding-block: clamp(60px, 8vw, 104px); }
 .sheet table { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 420px; }
 .sheet th { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 8px 10px; background: var(--surface-2); font-weight: 500; }
 .sheet td { padding: 8px 10px; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.sheet td:nth-child(1), .sheet td:nth-child(4) { white-space: nowrap; }
 .sheet tr.new td { animation: rowin 1.6s ease-out; }
 .pill { font-size: 0.72rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--teal-soft); color: var(--teal); white-space: nowrap; }
 .pill.wait { background: var(--marigold-soft); color: var(--marigold); }
+
+/* website builder */
+.site-types { display: flex; gap: 6px; padding: 12px 16px 0; flex-wrap: wrap; }
+.browser { margin: 14px 16px 16px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bg); }
+.chrome { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: var(--surface-2); border-bottom: 1px solid var(--line); }
+.dots { display: flex; gap: 5px; flex: none; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.url { flex: 1; min-width: 0; font-family: var(--mono); font-size: 0.74rem; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.url b { color: var(--fg); font-weight: 600; }
+.mock { --acc: var(--teal); --acc-soft: var(--teal-soft); padding: 14px; display: grid; gap: 12px; }
+.mock.mari { --acc: var(--marigold); --acc-soft: var(--marigold-soft); }
+.mock.mari .mock-btns > span:first-child { color: var(--on-mari); }
+.mock > * { transition: opacity .35s ease, transform .35s ease; }
+.mock.building > * { opacity: 0; transform: translateY(8px); }
+.mock-nav { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 0.8rem; }
+.mock-nav b { font-family: var(--display); font-size: 1rem; }
+.mock-nav span { color: var(--muted); display: flex; gap: 12px; }
+.mock-hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 12px; align-items: center; background: var(--acc-soft); border-radius: 10px; padding: 16px; }
+.mock-hero small { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.mock-hero h4 { margin: 4px 0 10px; font-family: var(--display); font-size: clamp(1.05rem, 0.9rem + 0.8vw, 1.35rem); line-height: 1.15; text-wrap: balance; }
+.mock-hero svg { width: 100%; max-width: 130px; height: auto; justify-self: center; }
+.mock-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.mock-btns span { font-size: 0.72rem; font-weight: 600; padding: 6px 10px; border-radius: 999px; background: var(--acc); color: var(--on-teal); display: inline-flex; gap: 5px; align-items: center; }
+.mock-btns span + span { background: var(--surface); color: var(--fg); border: 1px solid var(--line); }
+.mock-btns svg { width: 13px; height: 13px; }
+.mock-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.mock-cards div { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; font-size: 0.74rem; line-height: 1.3; min-width: 0; }
+.mock-cards div b { display: block; font-size: 0.78rem; }
+.mock-cards div span { color: var(--muted); }
+.mock-map { display: flex; align-items: center; gap: 10px; border: 1px dashed var(--line); border-radius: 8px; padding: 8px 10px; font-size: 0.76rem; color: var(--muted); }
+.mock-map svg { width: 22px; height: 22px; flex: none; }
+.mock-map b { color: var(--fg); }
+@media (max-width: 420px) { .mock-hero { grid-template-columns: 1fr; } .mock-hero svg { display: none; } .mock-nav span { display: none; } }
 
 /* bottle line */
 .line-card canvas { width: 100%; height: 200px; display: block; background: linear-gradient(var(--surface-2), var(--surface)); }
@@ -348,6 +383,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
     <symbol id="i-visit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1z"/><path d="M8 6H6.5A1.5 1.5 0 0 0 5 7.5v12A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 17.5 6H16"/><path d="M8.5 12h7M8.5 16h4"/></symbol>
     <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="6" height="6" rx="1.5"/><rect x="15" y="14" width="6" height="6" rx="1.5"/><path d="M9 7h4a2 2 0 0 1 2 2v5"/></symbol>
     <symbol id="i-factory" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V10l5 3V10l5 3V6l8 4v10z"/><path d="M7 17h2M12 17h2M17 17h1"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.8 3.7 5.8 3.7 9s-1.2 6.2-3.7 9c-2.5-2.8-3.7-5.8-3.7-9S9.5 5.8 12 3z"/></symbol>
   </defs>
 </svg>
 
@@ -381,7 +417,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
       <div class="hero-copy">
         <span class="eyebrow">AI help for Udaipur businesses</span>
         <h1>Less running around. <span>More time for your business.</span></h1>
-        <p class="lede">We visit your shop, hotel, clinic or factory, find the work that eats up your day, and set up AI to handle it: answering calls, sending bills, counting stock.</p>
+        <p class="lede">We visit your shop, hotel, clinic or factory, find the work that eats up your day, and set up AI to handle it: answering calls, sending bills, counting stock, even getting you online.</p>
         <div class="btn-row">
           <a class="btn btn-primary wa-link" href="https://wa.me/918890083352" target="_blank" rel="noopener">
             <svg aria-hidden="true"><use href="#i-chat"/></svg>Chat on WhatsApp
@@ -509,7 +545,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">What we do</span>
-        <h2>Four ways we take work off your plate</h2>
+        <h2>Five ways we take work off your plate</h2>
         <p>Try each one below. Most businesses start with the one that costs them the most hours every week.</p>
       </div>
 
@@ -575,6 +611,52 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
                 <div class="np-row"><span>Payment follow-ups</span><span class="np-bar" style="--w:36%"></span><span class="np-h">5 h</span></div>
               </div>
               <p class="np-verdict">Fix first: calls + billing → about 20 hours back every week</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Websites -->
+        <article class="feature" id="websites">
+          <div class="feature-copy">
+            <span class="feature-tag"><i><svg aria-hidden="true"><use href="#i-globe"/></svg></i>Websites</span>
+            <h3>A website that brings customers to your door</h3>
+            <p>A simple, fast site for your business that looks right on a phone, shows up on Google, and lets customers reach you on WhatsApp in one tap.</p>
+            <ul class="ticks">
+              <li>Made for phones, where most of your customers look you up</li>
+              <li>Listed on Google Search and Google Maps</li>
+              <li>WhatsApp, call and directions buttons on every page</li>
+              <li>Menus, rooms or prices you can change yourself</li>
+            </ul>
+            <a class="text-link wa-link" data-msg="Hi MU Consulting, I'd like a website for my business." href="https://wa.me/918890083352" target="_blank" rel="noopener">Ask about a website <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="demo">
+            <span class="demo-note">Pick a business, watch it build</span>
+            <div class="panel">
+              <div class="panel-head"><span class="live">Website preview</span><span class="tag-example">Example</span></div>
+              <div class="site-types" role="tablist" aria-label="Example businesses" id="site-types">
+                <button type="button" class="call-tab" role="tab" id="site-cafe" data-site="cafe" aria-selected="true">Café</button>
+                <button type="button" class="call-tab" role="tab" id="site-homestay" data-site="homestay" aria-selected="false">Homestay</button>
+                <button type="button" class="call-tab" role="tab" id="site-clinic" data-site="clinic" aria-selected="false">Clinic</button>
+              </div>
+              <div class="browser">
+                <div class="chrome"><span class="dots"><i></i><i></i><i></i></span><span class="url">https://<b id="mock-url">chaitapri.in</b></span></div>
+                <div class="mock mari" id="mock">
+                  <div class="mock-nav"><b id="mock-name">Chai Tapri Café</b><span id="mock-links"><span>Menu</span><span>Photos</span><span>Find us</span></span></div>
+                  <div class="mock-hero">
+                    <div>
+                      <small id="mock-kicker">Rooftop café · Ambrai Ghat</small>
+                      <h4 id="mock-head">Lake views and kulhad chai, from 7 am to midnight.</h4>
+                      <div class="mock-btns"><span><svg aria-hidden="true"><use href="#i-chat"/></svg><span id="mock-cta">Order on WhatsApp</span></span><span><svg aria-hidden="true"><use href="#i-phone"/></svg>Call</span></div>
+                    </div>
+                    <svg viewBox="0 0 120 100" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="mock-art"></svg>
+                  </div>
+                  <div class="mock-cards" id="mock-cards"></div>
+                  <div class="mock-map">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="s-teal f-teals" stroke-width="2" d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle class="s-teal" stroke-width="2" cx="12" cy="9.5" r="2.5"/></svg>
+                    <span><b id="mock-place">Ambrai Ghat, Udaipur</b> · Directions on Google Maps</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </article>
@@ -775,7 +857,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 
 <a class="fab wa-link" href="https://wa.me/918890083352" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg aria-hidden="true"><use href="#i-chat"/></svg></a>
 
-<script id="calls-data" type="application/json">[{"id": "hotel", "label": "Hotel booking", "lang": "Hinglish", "place": "Lakeside hotel, Udaipur", "time": "11:42 pm", "outcome": "Booking sent to WhatsApp", "src": "audio/hotel.mp3", "duration": 36.62, "turns": [{"who": "bot", "text": "Namaste! Lakeview Retreat mein aapka swagat hai. Bataiye, main kaise madad karoon?", "start": 0.0, "end": 5.177}, {"who": "caller", "text": "Haan ji, kal ke liye do rooms chahiye. Lake view wale.", "start": 5.627, "end": 9.108}, {"who": "bot", "text": "Kal ke liye do lake-view deluxe rooms available hain. Rate ₹6,500 per night hai, breakfast ke saath. Kitne log rahenge, aur kitni raat?", "start": 9.558, "end": 18.247}, {"who": "caller", "text": "Chaar log, do raat.", "start": 18.697, "end": 20.098}, {"who": "bot", "text": "Theek hai. Do rooms, do raatein, chaar mehmaan. Total ₹26,000. Kis naam se booking karoon?", "start": 20.548, "end": 27.774}, {"who": "caller", "text": "Rohit Mehta.", "start": 28.224, "end": 28.908}, {"who": "bot", "text": "Ho gaya, Rohit ji. Booking confirm hai, details aapke WhatsApp par bhej rahi hoon. Udaipur mein aapka swagat hai!", "start": 29.358, "end": 36.17}]}, {"id": "clinic", "label": "Clinic reminder", "lang": "Hindi", "place": "Dental clinic, Udaipur", "time": "10:05 am", "outcome": "Appointment moved, sheet updated", "src": "audio/clinic.mp3", "duration": 30.17, "turns": [{"who": "bot", "text": "Namaste, main Shanti Dental Clinic se bol rahi hoon. Kya meri baat Sunita ji se ho rahi hai?", "start": 0.0, "end": 5.054}, {"who": "caller", "text": "Haan, boliye.", "start": 5.504, "end": 6.324}, {"who": "bot", "text": "Sunita ji, kal subah gyarah baje Doctor Joshi ke saath aapka appointment hai. Kya aap aa paayengi?", "start": 6.774, "end": 12.228}, {"who": "caller", "text": "Kal toh mushkil hai. Parso ho sakta hai?", "start": 12.678, "end": 14.702}, {"who": "bot", "text": "Bilkul. Parso subah gyarah baje ya shaam paanch baje ka slot khaali hai. Kaunsa theek rahega?", "start": 15.152, "end": 20.806}, {"who": "caller", "text": "Shaam paanch baje.", "start": 21.256, "end": 22.232}, {"who": "bot", "text": "Ho gaya. Aapka appointment parso shaam paanch baje kar diya hai. Reminder WhatsApp par aa jayega. Dhanyavaad!", "start": 22.682, "end": 29.721}]}, {"id": "restaurant", "label": "Table booking", "lang": "English", "place": "Rooftop restaurant, Udaipur", "time": "8:15 pm", "outcome": "Table added to manager's list", "src": "audio/restaurant.mp3", "duration": 27.42, "turns": [{"who": "bot", "text": "Good evening, thanks for calling Rooftop Thali House. How can I help?", "start": 0.0, "end": 3.991}, {"who": "caller", "text": "Hi, I'd like a table for six this Saturday night.", "start": 4.441, "end": 7.148}, {"who": "bot", "text": "Sure. This Saturday I have a rooftop table at 8 PM, or an indoor table at 9. Which would you prefer?", "start": 7.598, "end": 14.17}, {"who": "caller", "text": "Rooftop at eight, please.", "start": 14.62, "end": 15.767}, {"who": "bot", "text": "Done. A rooftop table for six, Saturday at 8 PM. May I have a name for the booking?", "start": 16.217, "end": 21.032}, {"who": "caller", "text": "It's Anjali.", "start": 21.482, "end": 22.171}, {"who": "bot", "text": "Thank you, Anjali. You'll get a confirmation on WhatsApp. See you on Saturday!", "start": 22.621, "end": 26.969}]}]</script>
+<script id="calls-data" type="application/json">[{"id": "hotel", "label": "Hotel booking", "lang": "Hinglish", "place": "Lakeside hotel, Udaipur", "time": "11:42 pm", "outcome": "Booking sent to WhatsApp", "src": "audio/hotel.mp3", "duration": 39.06, "turns": [{"who": "bot", "text": "Namaste! Lakeview Retreat mein aapka swagat hai. Bataiye, main kaise madad karoon?", "start": 0.0, "end": 5.56}, {"who": "caller", "text": "Haan ji, kal ke liye do rooms chahiye. Lake view wale.", "start": 6.01, "end": 9.574}, {"who": "bot", "text": "Kal ke liye do lake-view deluxe rooms available hain. Rate ₹6,500 per night hai, breakfast ke saath. Kitne log rahenge, aur kitni raat?", "start": 10.024, "end": 19.313}, {"who": "caller", "text": "Chaar log, do raat.", "start": 19.763, "end": 21.456}, {"who": "bot", "text": "Theek hai. Do rooms, do raatein, chaar mehmaan. Total ₹26,000. Kis naam se booking karoon?", "start": 21.906, "end": 29.766}, {"who": "caller", "text": "Rohit Mehta.", "start": 30.216, "end": 31.199}, {"who": "bot", "text": "Ho gaya, Rohit ji. Booking confirm hai, details aapke WhatsApp par bhej rahi hoon. Udaipur mein aapka swagat hai!", "start": 31.649, "end": 38.614}]}, {"id": "clinic", "label": "Clinic reminder", "lang": "Hindi", "place": "Dental clinic, Udaipur", "time": "10:05 am", "outcome": "Appointment moved, sheet updated", "src": "audio/clinic.mp3", "duration": 36.21, "turns": [{"who": "bot", "text": "Namaste, main Shanti Dental Clinic se bol rahi hoon. Kya meri baat Sunita ji se ho rahi hai?", "start": 0.0, "end": 6.196}, {"who": "caller", "text": "Haan, boliye.", "start": 6.646, "end": 7.624}, {"who": "bot", "text": "Sunita ji, kal subah gyarah baje Doctor Joshi ke saath aapka appointment hai. Kya aap aa paayengi?", "start": 8.074, "end": 14.839}, {"who": "caller", "text": "Kal toh mushkil hai. Parso ho sakta hai?", "start": 15.289, "end": 19.122}, {"who": "bot", "text": "Bilkul. Parso subah gyarah baje ya shaam paanch baje ka slot khaali hai. Kaunsa theek rahega?", "start": 19.572, "end": 26.234}, {"who": "caller", "text": "Shaam paanch baje.", "start": 26.684, "end": 28.109}, {"who": "bot", "text": "Ho gaya. Aapka appointment parso shaam paanch baje kar diya hai. Reminder WhatsApp par aa jayega. Dhanyavaad!", "start": 28.559, "end": 35.761}]}, {"id": "restaurant", "label": "Table booking", "lang": "English", "place": "Rooftop restaurant, Udaipur", "time": "8:15 pm", "outcome": "Table added to manager's list", "src": "audio/restaurant.mp3", "duration": 30.34, "turns": [{"who": "bot", "text": "Good evening, thanks for calling Rooftop Thali House. How can I help?", "start": 0.0, "end": 3.818}, {"who": "caller", "text": "Hi, I'd like a table for six this Saturday night.", "start": 4.268, "end": 7.401}, {"who": "bot", "text": "Sure. This Saturday I have a rooftop table at 8 PM, or an indoor table at 9. Which would you prefer?", "start": 7.851, "end": 15.189}, {"who": "caller", "text": "Rooftop at eight, please.", "start": 15.639, "end": 17.391}, {"who": "bot", "text": "Done. A rooftop table for six, Saturday at 8 PM. May I have a name for the booking?", "start": 17.841, "end": 23.764}, {"who": "caller", "text": "It's Anjali.", "start": 24.214, "end": 25.022}, {"who": "bot", "text": "Thank you, Anjali. You'll get a confirmation on WhatsApp. See you on Saturday!", "start": 25.472, "end": 29.89}]}]</script>
 <script>
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -968,6 +1050,54 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
     }
     show(3);
     if (!reduced) setInterval(tick, 1500);
+  })();
+
+  // ---------- website builder ----------
+  (function () {
+    var art = {
+      cafe: '<path class="s-mari" stroke-width="3" d="M42 22c-3-5 3-8 0-13M56 22c-3-5 3-8 0-13"/><path class="f-surf s-ink" stroke-width="2.5" d="M28 32h48l-5 44a7 7 0 0 1-7 6H40a7 7 0 0 1-7-6z"/><path class="f-maris" d="M31 42h42l-1.3 11H32.3z"/><path class="s-ink" stroke-width="2.5" d="M76 42h5a7 7 0 0 1 0 14h-6M20 92h70"/>',
+      homestay: '<path class="f-sand s-ink" stroke-width="2.5" d="M20 88V46l38-24 38 24v42z"/><path class="f-teals s-ink" stroke-width="2" d="M34 88V66a8 8 0 0 1 16 0v22M64 56h16v14H64z"/><path class="f-maris s-ink" stroke-width="2" d="M50 34a8 8 0 0 1 16 0z"/><path class="s-ink" stroke-width="2.5" d="M12 88h96"/>',
+      clinic: '<rect class="f-surf s-ink" stroke-width="2.5" x="24" y="20" width="72" height="68" rx="10"/><path class="s-teal" stroke-width="7" d="M60 36v36M42 54h36"/><path class="s-ink" stroke-width="2.5" d="M14 92h92"/>'
+    };
+    var sites = {
+      cafe: { cls: 'mari', url: 'chaitapri.in', name: 'Chai Tapri Café', links: ['Menu', 'Photos', 'Find us'],
+        kicker: 'Rooftop café · Ambrai Ghat', head: 'Lake views and kulhad chai, from 7 am to midnight.', cta: 'Order on WhatsApp',
+        cards: [['Masala chai', '₹40'], ['Poha', '₹90'], ['Lake-view table', 'Book a spot']], place: 'Ambrai Ghat, Udaipur' },
+      homestay: { cls: '', url: 'pichola-haveli.in', name: 'Pichola Haveli Stay', links: ['Rooms', 'Photos', 'Find us'],
+        kicker: 'Old-city homestay · Gangaur Ghat', head: 'Wake up to the lake, five minutes from City Palace.', cta: 'Book on WhatsApp',
+        cards: [['Lake-view room', '₹3,200 / night'], ['Haveli room', '₹2,400 / night'], ['Airport pickup', 'On request']], place: 'Gangaur Ghat, Udaipur' },
+      clinic: { cls: '', url: 'smilecare-udaipur.in', name: 'SmileCare Dental', links: ['Treatments', 'Doctors', 'Find us'],
+        kicker: 'Dental clinic · Hiran Magri', head: 'Gentle dental care. Book your visit on WhatsApp.', cta: 'Book appointment',
+        cards: [['Check-up', '20 min'], ['Cleaning', '45 min'], ['Open', 'Mon–Sat, 10–7']], place: 'Hiran Magri, Sector 4, Udaipur' }
+    };
+    var mock = document.getElementById('mock'), timer = null;
+    function $(id) { return document.getElementById(id); }
+    function fill(k) {
+      var d = sites[k];
+      mock.className = 'mock' + (d.cls ? ' ' + d.cls : '');
+      $('mock-url').textContent = d.url; $('mock-name').textContent = d.name;
+      $('mock-links').innerHTML = d.links.map(function (l) { return '<span>' + l + '</span>'; }).join('');
+      $('mock-kicker').textContent = d.kicker; $('mock-head').textContent = d.head; $('mock-cta').textContent = d.cta;
+      $('mock-art').innerHTML = art[k];
+      $('mock-cards').innerHTML = d.cards.map(function (c) { return '<div><b>' + c[0] + '</b><span>' + c[1] + '</span></div>'; }).join('');
+      $('mock-place').textContent = d.place;
+    }
+    function build(k) {
+      document.querySelectorAll('#site-types .call-tab').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.site === k)); });
+      if (reduced) { fill(k); return; }
+      mock.classList.add('building');
+      var kids = Array.prototype.slice.call(mock.children);
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        fill(k); mock.classList.add('building');
+        kids = Array.prototype.slice.call(mock.children);
+        kids.forEach(function (el, i) { el.style.transitionDelay = (i * 0.14) + 's'; });
+        requestAnimationFrame(function () { mock.classList.remove('building'); });
+        setTimeout(function () { kids.forEach(function (el) { el.style.transitionDelay = ''; }); }, 1200);
+      }, 300);
+    }
+    document.querySelectorAll('#site-types .call-tab').forEach(function (b) { b.addEventListener('click', function () { build(b.dataset.site); }); });
+    fill('cafe');
   })();
 
   // ---------- bottle line ----------
