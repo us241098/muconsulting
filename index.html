@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1220">
+<meta property="og:title" content="MU Consulting">
+<meta property="og:description" content="AI for Udaipur businesses: voicebots, n8n workflows, on-site AI consulting and industrial automation.">
+<meta property="og:url" content="https://muconsulting.in">
+<title>MU Consulting</title>
+<meta name="description" content="MU Consulting helps Udaipur businesses use AI: voicebots that answer calls, custom n8n workflows, on-site AI consulting and industrial automation like unit counters.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: "Lake City at Night". A dark circuit-grid ground; hero pairs the pitch with two live-looking
+   readouts (a voicebot call and a factory unit counter); sections below run on one 1120px column. */
+:root {
+  --bg: #0B1220;        /* ink — Lake Pichola at night */
+  --surface: #111B30;
+  --surface-2: #16223B;
+  --line: #22304D;
+  --grid: rgba(46, 230, 197, 0.045);
+  --fg: #E8EEF7;
+  --muted: #93A0B8;
+  --aqua: #2EE6C5;      /* primary: lights on the water */
+  --aqua-soft: rgba(46, 230, 197, 0.12);
+  --marigold: #FFB020;  /* secondary: Rajasthan, used sparingly */
+  --on-aqua: #04201B;
+  --shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.6);
+
+  --display: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+  --body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: clamp(1.9rem, 1.4rem + 2vw, 2.6rem);
+  --step-4: clamp(2.5rem, 1.6rem + 4.2vw, 4.4rem);
+  --radius: 14px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #F3F6FA; --surface: #FFFFFF; --surface-2: #EAF0F6; --line: #D6DFEA;
+    --grid: rgba(10, 140, 120, 0.06); --fg: #0B1220; --muted: #4A5873;
+    --aqua: #08826F; --aqua-soft: rgba(8, 130, 111, 0.1); --marigold: #B36A00; --on-aqua: #FFFFFF;
+    --shadow: 0 24px 50px -28px rgba(11, 18, 32, 0.25);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #F3F6FA; --surface: #FFFFFF; --surface-2: #EAF0F6; --line: #D6DFEA;
+  --grid: rgba(10, 140, 120, 0.06); --fg: #0B1220; --muted: #4A5873;
+  --aqua: #08826F; --aqua-soft: rgba(8, 130, 111, 0.1); --marigold: #B36A00; --on-aqua: #FFFFFF;
+  --shadow: 0 24px 50px -28px rgba(11, 18, 32, 0.25);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--aqua); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.08; margin: 0; text-wrap: balance; font-weight: 700; }
+p { margin: 0; }
+
+.wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: 20px; }
+section { padding-block: clamp(64px, 9vw, 112px); }
+.eyebrow {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--aqua); display: inline-flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--marigold); }
+.section-head { display: grid; gap: 14px; max-width: 640px; margin-bottom: 44px; }
+.section-head h2 { font-size: var(--step-3); }
+.section-head p { color: var(--muted); font-size: 1.08rem; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; justify-content: center;
+  font: 600 1rem/1 var(--body); text-decoration: none; cursor: pointer;
+  padding: 15px 22px; border-radius: 999px; border: 1.5px solid transparent;
+  transition: transform .15s ease, background-color .15s ease, border-color .15s ease;
+}
+.btn svg { width: 19px; height: 19px; flex: none; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--aqua); color: var(--on-aqua); }
+.btn-ghost { border-color: var(--line); color: var(--fg); background: var(--surface); }
+.btn-ghost:hover { border-color: var(--aqua); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand svg { width: 38px; height: 38px; }
+.brand-name { display: grid; line-height: 1; }
+.brand-name b { font-family: var(--display); font-size: 1.32rem; letter-spacing: 0.12em; font-weight: 700; }
+.brand-name small { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.32em; color: var(--muted); margin-top: 4px; }
+.nav-links { display: flex; gap: 26px; font-size: 0.95rem; color: var(--muted); }
+.nav-links a { text-decoration: none; }
+.nav-links a:hover { color: var(--fg); }
+.nav .btn { padding: 11px 16px; font-size: 0.92rem; }
+@media (max-width: 860px) { .nav-links { display: none; } }
+@media (max-width: 420px) { .nav .btn span { display: none; } .nav .btn { padding: 11px; } }
+
+/* logo strokes take theme tokens */
+.mu-a { stroke: var(--aqua); }
+.mu-m { stroke: var(--marigold); }
+
+/* ---------- hero ---------- */
+.hero { padding-block: clamp(48px, 8vw, 96px) clamp(56px, 8vw, 96px); }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+.hero-copy { display: grid; gap: 24px; min-width: 0; }
+.hero h1 { font-size: var(--step-4); font-weight: 800; letter-spacing: -0.02em; font-variation-settings: "opsz" 96; }
+.hero h1 em { font-style: normal; color: var(--aqua); }
+.hero .lede { font-size: 1.18rem; color: var(--muted); max-width: 34ch; }
+.phone-line { font-family: var(--mono); font-size: 0.9rem; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.phone-line strong { color: var(--fg); font-weight: 600; user-select: all; }
+.copy-btn {
+  font: 500 0.78rem/1 var(--mono); color: var(--muted); background: transparent;
+  border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; cursor: pointer;
+}
+.copy-btn:hover { color: var(--fg); border-color: var(--aqua); }
+
+.readouts { display: grid; gap: 16px; min-width: 0; }
+.panel {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.panel-head {
+  display: flex; justify-content: space-between; gap: 12px; align-items: center;
+  padding: 11px 16px; border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--muted);
+}
+.live { display: inline-flex; align-items: center; gap: 7px; color: var(--aqua); text-transform: uppercase; }
+.live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--aqua); animation: pulse 1.6s ease-in-out infinite; }
+.tag-example {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--marigold); border: 1px solid color-mix(in srgb, var(--marigold) 45%, transparent);
+  padding: 3px 7px; border-radius: 5px; white-space: nowrap;
+}
+.call-body { padding: 16px; display: grid; gap: 12px; }
+.wave { display: flex; align-items: center; gap: 4px; height: 38px; }
+.wave i {
+  display: block; width: 4px; border-radius: 2px; background: var(--aqua);
+  height: var(--h, 40%); animation: wave 1.1s ease-in-out infinite; animation-delay: var(--d, 0s);
+  transform-origin: center;
+}
+.turn { display: grid; grid-template-columns: 56px 1fr; gap: 10px; font-size: 0.93rem; }
+.turn .who { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); padding-top: 3px; text-transform: uppercase; letter-spacing: 0.06em; }
+.turn.bot .who { color: var(--aqua); }
+.turn p { min-width: 0; }
+.call-foot { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); padding: 10px 16px; border-top: 1px dashed var(--line); display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.call-foot b { color: var(--fg); font-weight: 600; }
+
+.counter-body { padding: 16px; display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; align-items: end; }
+.count { font-family: var(--mono); font-weight: 600; font-size: clamp(2.2rem, 1.6rem + 2.4vw, 3rem); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.count-label { font-size: 0.85rem; color: var(--muted); }
+.count-side { text-align: right; font-family: var(--mono); font-size: 0.78rem; color: var(--muted); display: grid; gap: 4px; }
+.count-side b { color: var(--marigold); font-weight: 600; }
+.belt { grid-column: 1 / -1; height: 26px; border-radius: 6px; background: var(--surface-2); position: relative; overflow: hidden; margin-top: 8px; }
+.belt::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 10px 13px, var(--aqua) 0 5px, transparent 6px);
+  background-size: 34px 26px; opacity: .85; animation: belt 1.6s linear infinite;
+}
+.belt::after { content: ""; position: absolute; top: 0; bottom: 0; left: 62%; width: 2px; background: var(--marigold); box-shadow: 0 0 12px var(--marigold); }
+
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } }
+
+/* ---------- services ---------- */
+.services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.service { background: var(--surface); padding: clamp(24px, 3vw, 36px); display: grid; gap: 14px; align-content: start; min-width: 0; }
+.service-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.icon { width: 46px; height: 46px; border-radius: 12px; background: var(--aqua-soft); display: grid; place-items: center; color: var(--aqua); }
+.icon svg { width: 24px; height: 24px; }
+.service-kicker { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+.service h3 { font-size: var(--step-2); }
+.service p { color: var(--muted); }
+.service ul { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 0.95rem; }
+.service li { display: grid; grid-template-columns: 14px 1fr; gap: 10px; }
+.service li::before { content: ""; width: 8px; height: 8px; margin-top: 8px; border: 2px solid var(--aqua); border-radius: 50%; }
+@media (max-width: 760px) { .services { grid-template-columns: 1fr; } }
+
+/* ---------- examples ---------- */
+.examples { display: grid; border-top: 1px solid var(--line); }
+.example { display: grid; grid-template-columns: 220px 1fr 1fr; gap: 16px 32px; padding-block: 26px; border-bottom: 1px solid var(--line); }
+.example > * { min-width: 0; }
+.ex-who h3 { font-size: 1.2rem; }
+.ex-who span { display: block; margin-top: 6px; font-family: var(--mono); font-size: 0.74rem; color: var(--muted); letter-spacing: 0.04em; }
+.ex-col small { display: block; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.ex-col.fix small { color: var(--aqua); }
+.ex-col p { font-size: 0.98rem; }
+@media (max-width: 820px) { .example { grid-template-columns: 1fr; gap: 12px; } }
+
+/* ---------- process ---------- */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; counter-reset: step; }
+.step { display: grid; gap: 10px; align-content: start; padding-top: 22px; border-top: 2px solid var(--line); position: relative; }
+.step::before {
+  counter-increment: step; content: "0" counter(step);
+  font-family: var(--mono); font-size: 0.8rem; color: var(--marigold); letter-spacing: 0.1em;
+}
+.step::after { content: ""; position: absolute; top: -2px; left: 0; width: 44px; height: 2px; background: var(--aqua); }
+.step h3 { font-size: 1.3rem; }
+.step p { color: var(--muted); font-size: 0.97rem; }
+@media (max-width: 860px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 20px; } }
+@media (max-width: 480px) { .steps { grid-template-columns: 1fr; } }
+
+/* ---------- founders ---------- */
+.founders { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.founder { display: grid; grid-template-columns: 76px 1fr; gap: 20px; align-items: center; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.avatar {
+  width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center;
+  font-family: var(--display); font-weight: 700; font-size: 1.5rem; letter-spacing: 0.04em;
+  color: var(--aqua); background: var(--aqua-soft); border: 1.5px solid color-mix(in srgb, var(--aqua) 40%, transparent);
+}
+.founder h3 { font-size: 1.35rem; }
+.founder .role { font-family: var(--mono); font-size: 0.74rem; color: var(--marigold); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+.founder p.bio { color: var(--muted); margin-top: 8px; font-size: 0.97rem; }
+@media (max-width: 760px) { .founders { grid-template-columns: 1fr; } }
+@media (max-width: 400px) { .founder { grid-template-columns: 1fr; } }
+
+/* ---------- final CTA ---------- */
+.cta-panel {
+  border-radius: calc(var(--radius) + 6px); padding: clamp(32px, 6vw, 64px);
+  background:
+    radial-gradient(120% 140% at 100% 0%, var(--aqua-soft), transparent 60%),
+    var(--surface);
+  border: 1px solid var(--line);
+  display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center;
+}
+.cta-panel h2 { font-size: var(--step-3); }
+.cta-panel p { color: var(--muted); margin-top: 14px; max-width: 46ch; }
+.cta-side { display: grid; gap: 14px; justify-items: start; }
+.contact-list { font-family: var(--mono); font-size: 0.86rem; color: var(--muted); display: grid; gap: 6px; }
+.contact-list strong { color: var(--fg); font-weight: 600; user-select: all; }
+@media (max-width: 820px) { .cta-panel { grid-template-columns: 1fr; } }
+
+/* ---------- footer ---------- */
+footer { border-top: 1px solid var(--line); padding-block: 28px; }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 0.88rem; color: var(--muted); }
+
+/* ---------- floating WhatsApp ---------- */
+.fab {
+  position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30;
+  width: 58px; height: 58px; border-radius: 50%; display: none; place-items: center;
+  background: var(--aqua); color: var(--on-aqua); box-shadow: var(--shadow);
+}
+.fab svg { width: 28px; height: 28px; }
+@media (max-width: 760px) { .fab { display: grid; } }
+
+/* ---------- motion ---------- */
+@keyframes wave { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+@keyframes belt { from { background-position: 0 0; } to { background-position: 34px 0; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- shared icon sprites -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.4-4.2A8 8 0 1 1 8.6 19z"/><path d="M9 10.5c.5 1.6 1.9 3 3.5 3.5l1-1 2 .8v1.4c-3.7.4-7.3-3.2-6.9-6.9h1.4l.8 2z" stroke-width="1.4"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h3l2 5-2.5 1.5a11 11 0 0 0 7 7L16 14l5 2v3a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="MU Consulting, home">
+      <svg viewBox="0 0 120 120" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path class="mu-a" d="M28 24 V88 Q28 98 38 98 H46" stroke-width="10"/>
+        <circle class="mu-a" cx="55" cy="98" r="6" stroke-width="5"/>
+        <path class="mu-a" d="M28 50 C28 70 38 76 50 76 C62 76 72 68 72 50 M72 24 V76" stroke-width="10"/>
+        <path class="mu-m" d="M90 36 V64 M106 44 V56" stroke-width="10"/>
+      </svg>
+      <span class="brand-name"><b>MU</b><small>CONSULTING</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#services">Services</a>
+      <a href="#examples">Examples</a>
+      <a href="#process">How we work</a>
+      <a href="#team">Team</a>
+    </nav>
+    <a class="btn btn-primary wa-link" href="https://wa.me/918890083352" target="_blank" rel="noopener">
+      <svg aria-hidden="true"><use href="#i-chat"/></svg><span>WhatsApp us</span>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow">AI for Udaipur businesses</span>
+        <h1>AI that works as hard as <em>you&nbsp;do.</em></h1>
+        <p class="lede">We help Udaipur businesses automate calls, paperwork and factory floors. We come to you, find what's eating your time, and build the fix.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary wa-link" href="https://wa.me/918890083352" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-chat"/></svg>Chat on WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="tel:+918890083352">
+            <svg aria-hidden="true"><use href="#i-phone"/></svg>Call us
+          </a>
+        </div>
+        <p class="phone-line">Call or WhatsApp <strong>+91 88900 83352</strong>
+          <button class="copy-btn" type="button" id="copy-hero" data-copy="+91 88900 83352">Copy</button>
+        </p>
+      </div>
+
+      <div class="readouts" aria-label="Examples of what we build">
+        <div class="panel">
+          <div class="panel-head">
+            <span class="live">Voicebot · on call</span>
+            <span class="tag-example">Example</span>
+          </div>
+          <div class="call-body">
+            <div class="wave" aria-hidden="true" id="wave"></div>
+            <div class="turn"><span class="who">Caller</span><p>Kal ke liye do rooms available hain? Lake view chahiye.</p></div>
+            <div class="turn bot"><span class="who">Bot</span><p>Haan ji, lake-view deluxe available hai, ₹6,500 per night. Do rooms book kar doon?</p></div>
+          </div>
+          <div class="call-foot"><span>Lakeside hotel, Udaipur</span><span>11:42 pm · <b>booking sent to WhatsApp</b></span></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <span class="live">Unit counter · Line 2</span>
+            <span class="tag-example">Example</span>
+          </div>
+          <div class="counter-body">
+            <div>
+              <div class="count" id="count">12,486</div>
+              <div class="count-label">bottles counted this shift</div>
+            </div>
+            <div class="count-side"><span><b>42</b> / min</span><span>0 missed</span></div>
+            <div class="belt" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">What we do</span>
+        <h2>Four ways we put AI to work in your business</h2>
+        <p>Start with one. Most businesses begin with the thing that costs them the most hours every week.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <div class="service-top">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></div>
+            <span class="service-kicker">Voice AI</span>
+          </div>
+          <h3>Voicebots</h3>
+          <p>A phone assistant that picks up every call, day or night, and talks to customers in Hindi or English.</p>
+          <ul>
+            <li>Takes bookings, orders and appointments</li>
+            <li>Calls back leads and follows up on payments</li>
+            <li>Sends a summary of every call to your WhatsApp</li>
+          </ul>
+        </article>
+        <article class="service">
+          <div class="service-top">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 11h5M11 8.5v5"/></svg></div>
+            <span class="service-kicker">On-site</span>
+          </div>
+          <h3>AI consulting</h3>
+          <p>We visit your shop, office or factory, watch how work actually gets done, and tell you plainly where AI helps and where it doesn't.</p>
+          <ul>
+            <li>A walk-through of your daily operations</li>
+            <li>A short written plan, ranked by time and money saved</li>
+            <li>Honest advice, even when the answer is "not yet"</li>
+          </ul>
+        </article>
+        <article class="service">
+          <div class="service-top">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="6" height="6" rx="1.5"/><rect x="15" y="14" width="6" height="6" rx="1.5"/><path d="M9 7h4a2 2 0 0 1 2 2v5"/><circle cx="18" cy="7" r="2"/><path d="M6 10v5a2 2 0 0 0 2 2h7"/></svg></div>
+            <span class="service-kicker">n8n</span>
+          </div>
+          <h3>Custom workflows</h3>
+          <p>We connect the tools you already use so data moves by itself, without anyone copying it from one screen to another.</p>
+          <ul>
+            <li>WhatsApp orders straight into Google Sheets or Tally</li>
+            <li>Automatic invoices, reminders and daily reports</li>
+            <li>Built on n8n, so you own it and it stays cheap to run</li>
+          </ul>
+        </article>
+        <article class="service">
+          <div class="service-top">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18h20"/><rect x="4" y="11" width="3.5" height="7" rx="1"/><rect x="10.25" y="11" width="3.5" height="7" rx="1"/><rect x="16.5" y="11" width="3.5" height="7" rx="1"/><path d="M12 3v4M9.5 5.5L12 7l2.5-1.5"/></svg></div>
+            <span class="service-kicker">Factory floor</span>
+          </div>
+          <h3>Industrial automation</h3>
+          <p>Camera-based systems that count, check and log what moves on your production line.</p>
+          <ul>
+            <li>Bottle, box and unit counters for any conveyor</li>
+            <li>Spot damaged or mislabelled items</li>
+            <li>Live production numbers on your phone</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="examples">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Examples of what we build</span>
+        <h2>What this looks like in an Udaipur business</h2>
+        <p>Typical problems we see and the system we would build for each. These are examples, not client case studies.</p>
+      </div>
+      <div class="examples">
+        <div class="example">
+          <div class="ex-who"><h3>Lakeside hotel</h3><span>Voicebot</span></div>
+          <div class="ex-col"><small>The problem</small><p>Guests call at midnight to ask about rooms. Nobody picks up, and they book on a travel site instead.</p></div>
+          <div class="ex-col fix"><small>What we build</small><p>A voicebot that answers every call, checks availability, quotes the rate and sends the booking to the front desk on WhatsApp.</p></div>
+        </div>
+        <div class="example">
+          <div class="ex-who"><h3>Marble &amp; stone unit</h3><span>Industrial automation</span></div>
+          <div class="ex-col"><small>The problem</small><p>Tiles and slabs leaving the line are counted by hand, and the totals rarely match dispatch.</p></div>
+          <div class="ex-col fix"><small>What we build</small><p>A camera over the conveyor that counts every piece and shows shift totals on the owner's phone.</p></div>
+        </div>
+        <div class="example">
+          <div class="ex-who"><h3>Clinic</h3><span>Voicebot + workflow</span></div>
+          <div class="ex-col"><small>The problem</small><p>Patients forget appointments, and the receptionist spends the morning on reminder calls.</p></div>
+          <div class="ex-col fix"><small>What we build</small><p>Automatic WhatsApp and call reminders the day before, with replies updating the appointment sheet.</p></div>
+        </div>
+        <div class="example">
+          <div class="ex-who"><h3>Handicraft shop</h3><span>n8n workflow</span></div>
+          <div class="ex-col"><small>The problem</small><p>Orders arrive on WhatsApp and Instagram, then get typed into a register and Tally by hand.</p></div>
+          <div class="ex-col fix"><small>What we build</small><p>A workflow that collects every order into one sheet, creates the invoice and sends it to the customer.</p></div>
+        </div>
+        <div class="example">
+          <div class="ex-who"><h3>Restaurant</h3><span>Voicebot</span></div>
+          <div class="ex-col"><small>The problem</small><p>Weekend table bookings jam the phone line while staff are busy serving.</p></div>
+          <div class="ex-col fix"><small>What we build</small><p>A booking assistant that takes reservations by phone and keeps a live table list for the manager.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How we work</span>
+        <h2>From first visit to a system that runs</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Visit</h3><p>We come to your business and see how the day actually runs.</p></div>
+        <div class="step"><h3>Plan</h3><p>You get a short plan: what to automate first, what it costs, and what it saves.</p></div>
+        <div class="step"><h3>Build</h3><p>We build it, test it with your team, and adjust until it fits how you work.</p></div>
+        <div class="step"><h3>Support</h3><p>We stay on call to fix, improve and extend it as your business grows.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Who we are</span>
+        <h2>Two engineers who build AI for a living</h2>
+        <p>You talk to the people who build your system, not a sales team.</p>
+      </div>
+      <div class="founders">
+        <div class="founder">
+          <div class="avatar" aria-hidden="true">US</div>
+          <div>
+            <h3>Utsav Shukla</h3>
+            <div class="role">Co-founder</div>
+            <p class="bio">Builds production AI voicebots that handle real customer calls at scale.</p>
+          </div>
+        </div>
+        <div class="founder">
+          <div class="avatar" aria-hidden="true">MV</div>
+          <div>
+            <h3>Manan Vyas</h3>
+            <div class="role">Co-founder</div>
+            <!-- TODO: replace with Manan's one-line background -->
+            <p class="bio">Leads client work and on-site consulting across Udaipur.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="cta-panel">
+        <div>
+          <span class="eyebrow">Talk to us</span>
+          <h2 style="margin-top:14px">Let's talk about your business.</h2>
+          <p>Tell us what takes up most of your team's time. We'll tell you whether AI can fix it, and how.</p>
+        </div>
+        <div class="cta-side">
+          <a class="btn btn-primary wa-link" href="https://wa.me/918890083352" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-chat"/></svg>Chat on WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="tel:+918890083352">
+            <svg aria-hidden="true"><use href="#i-phone"/></svg>Call +91 88900 83352
+          </a>
+          <div class="contact-list">
+            <span>Phone / WhatsApp <strong>+91 88900 83352</strong></span>
+            <span>Based in Udaipur, Rajasthan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="MU Consulting, back to top">
+      <svg viewBox="0 0 120 120" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:28px;height:28px">
+        <path class="mu-a" d="M28 24 V88 Q28 98 38 98 H46" stroke-width="10"/>
+        <circle class="mu-a" cx="55" cy="98" r="6" stroke-width="5"/>
+        <path class="mu-a" d="M28 50 C28 70 38 76 50 76 C62 76 72 68 72 50 M72 24 V76" stroke-width="10"/>
+        <path class="mu-m" d="M90 36 V64 M106 44 V56" stroke-width="10"/>
+      </svg>
+      <span>© 2026 MU Consulting</span>
+    </a>
+    <span>muconsulting.in · Udaipur</span>
+  </div>
+</footer>
+
+<a class="fab wa-link" href="https://wa.me/918890083352" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg aria-hidden="true"><use href="#i-chat"/></svg>
+</a>
+
+<script>
+(function () {
+  // Pre-filled WhatsApp message on every WhatsApp link
+  var msg = encodeURIComponent("Hi MU Consulting, I'd like to know how AI can help my business.");
+  document.querySelectorAll('.wa-link').forEach(function (a) { a.href = 'https://wa.me/918890083352?text=' + msg; });
+
+  // Waveform bars
+  var wave = document.getElementById('wave');
+  var heights = [30,55,80,45,95,60,35,70,100,50,75,40,85,55,30,65,90,45,60,35,80,50,70,40,95,55,30,75,45,60];
+  heights.forEach(function (h, i) {
+    var b = document.createElement('i');
+    b.style.setProperty('--h', h + '%');
+    b.style.setProperty('--d', (-(i * 0.13) % 1.1).toFixed(2) + 's');
+    wave.appendChild(b);
+  });
+
+  // Unit counter ticks up (static under reduced motion)
+  var el = document.getElementById('count');
+  var n = 12486;
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(function () { n += 1; el.textContent = n.toLocaleString('en-IN'); }, 1430);
+  }
+
+  // Copy phone number
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
+      try {
+        navigator.clipboard.writeText(text).then(done, function () { selectNumber(btn); });
+      } catch (e) { selectNumber(btn); }
+    });
+  });
+  function selectNumber(btn) {
+    var s = btn.parentNode.querySelector('strong');
+    var r = document.createRange(); r.selectNodeContents(s);
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+  }
+})();
+</script>
+</body>
+</html>

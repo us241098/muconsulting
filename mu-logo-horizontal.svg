@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>MU Consulting</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&amp;family=JetBrains+Mono:wght@500&amp;display=swap');
+    .w { font-family: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 58px; letter-spacing: 6px; fill: #E8EEF7; }
+    .s { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-weight: 500; font-size: 15px; letter-spacing: 5.2px; fill: #93A0B8; }
+  </style>
+  <path d="M28 24 V88 Q28 98 38 98 H46" stroke="#2EE6C5" stroke-width="10"/>
+  <circle cx="55" cy="98" r="6" stroke="#2EE6C5" stroke-width="5"/>
+  <path d="M28 50 C28 70 38 76 50 76 C62 76 72 68 72 50 M72 24 V76" stroke="#2EE6C5" stroke-width="10"/>
+  <path d="M90 36 V64 M106 44 V56" stroke="#FFB020" stroke-width="10"/>
+  <text x="138" y="72" class="w">MU</text>
+  <text x="141" y="98" class="s">CONSULTING</text>
+</svg>

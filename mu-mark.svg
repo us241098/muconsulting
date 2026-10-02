@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>MU Consulting mark</title>
+  <!-- μ: left stem drops below the baseline and turns into a circuit trace ending in a node -->
+  <path d="M28 24 V88 Q28 98 38 98 H46" stroke="#2EE6C5" stroke-width="10"/>
+  <circle cx="55" cy="98" r="6" stroke="#2EE6C5" stroke-width="5"/>
+  <!-- bowl + right stem -->
+  <path d="M28 50 C28 70 38 76 50 76 C62 76 72 68 72 50 M72 24 V76" stroke="#2EE6C5" stroke-width="10"/>
+  <!-- the voice: two audio-level bars continuing the right stem -->
+  <path d="M90 36 V64 M106 44 V56" stroke="#FFB020" stroke-width="10"/>
+</svg>
