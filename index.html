@@ -12,7 +12,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;600&family=Caveat:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;600&family=Caveat:wght@500;700&family=Yeseva+One&family=Karla:wght@400;600&family=Cormorant+Garamond:ital,wght@0,500;1,600&family=Lato:wght@400;700&family=Nunito:wght@500;700;800&display=swap">
 <style>
 /* Layout: "Lake & Sandstone". A light, open page drawn in one line-art style: Udaipur's skyline in the hero,
    then each service sits beside a small working demo (call player, visit notes, order flow, bottle line). */
@@ -260,38 +260,82 @@ section { padding-block: clamp(60px, 8vw, 104px); }
 .pill { font-size: 0.72rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--teal-soft); color: var(--teal); white-space: nowrap; }
 .pill.wait { background: var(--marigold-soft); color: var(--marigold); }
 
-/* website builder */
+/* website builder: each example site has its own brand, independent of the page theme */
 .site-types { display: flex; gap: 6px; padding: 12px 16px 0; flex-wrap: wrap; }
-.browser { margin: 14px 16px 16px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bg); }
+.browser { margin: 14px 16px 16px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface-2); }
 .chrome { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: var(--surface-2); border-bottom: 1px solid var(--line); }
 .dots { display: flex; gap: 5px; flex: none; }
 .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
 .url { flex: 1; min-width: 0; font-family: var(--mono); font-size: 0.74rem; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .url b { color: var(--fg); font-weight: 600; }
-.mock { --acc: var(--teal); --acc-soft: var(--teal-soft); padding: 14px; display: grid; gap: 12px; }
-.mock.mari { --acc: var(--marigold); --acc-soft: var(--marigold-soft); }
-.mock.mari .mock-btns > span:first-child { color: var(--on-mari); }
+.mock { background: var(--m-bg); color: var(--m-fg); font-family: var(--m-body); min-height: 360px; }
+.mock * { box-sizing: border-box; }
 .mock > * { transition: opacity .35s ease, transform .35s ease; }
 .mock.building > * { opacity: 0; transform: translateY(8px); }
-.mock-nav { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 0.8rem; }
-.mock-nav b { font-family: var(--display); font-size: 1rem; }
-.mock-nav span { color: var(--muted); display: flex; gap: 12px; }
-.mock-hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 12px; align-items: center; background: var(--acc-soft); border-radius: 10px; padding: 16px; }
-.mock-hero small { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.mock-hero h4 { margin: 4px 0 10px; font-family: var(--display); font-size: clamp(1.05rem, 0.9rem + 0.8vw, 1.35rem); line-height: 1.15; text-wrap: balance; }
-.mock-hero svg { width: 100%; max-width: 130px; height: auto; justify-self: center; }
-.mock-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-.mock-btns span { font-size: 0.72rem; font-weight: 600; padding: 6px 10px; border-radius: 999px; background: var(--acc); color: var(--on-teal); display: inline-flex; gap: 5px; align-items: center; }
-.mock-btns span + span { background: var(--surface); color: var(--fg); border: 1px solid var(--line); }
-.mock-btns svg { width: 13px; height: 13px; }
-.mock-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.mock-cards div { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; font-size: 0.74rem; line-height: 1.3; min-width: 0; }
-.mock-cards div b { display: block; font-size: 0.78rem; }
-.mock-cards div span { color: var(--muted); }
-.mock-map { display: flex; align-items: center; gap: 10px; border: 1px dashed var(--line); border-radius: 8px; padding: 8px 10px; font-size: 0.76rem; color: var(--muted); }
-.mock-map svg { width: 22px; height: 22px; flex: none; }
-.mock-map b { color: var(--fg); }
-@media (max-width: 420px) { .mock-hero { grid-template-columns: 1fr; } .mock-hero svg { display: none; } .mock-nav span { display: none; } }
+.mock svg { display: block; flex: none; }
+.mock .m-st { stroke: var(--m-fg); } .mock .m-acc-s { stroke: var(--m-acc); } .mock .m-acc-f { fill: var(--m-acc); }
+.mock .m-soft-f { fill: var(--m-soft); } .mock .m-bg-f { fill: var(--m-bg); } .mock .m-fg-f { fill: var(--m-fg); }
+.m-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 0.74rem; font-weight: 700; padding: 8px 12px; background: var(--m-acc); color: var(--m-on-acc); border-radius: var(--m-r); white-space: nowrap; }
+.m-btn.alt { background: transparent; color: var(--m-fg); box-shadow: inset 0 0 0 1.5px currentColor; }
+.m-btn svg { width: 13px; height: 13px; }
+.m-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.m-nav { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 16px; font-size: 0.74rem; }
+.m-nav nav { display: flex; gap: 12px; }
+.m-map { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; padding: 10px 16px; }
+.m-map svg { width: 18px; height: 18px; flex: none; }
+
+/* café: warm, handmade, menu-card */
+.mock.cafe { --m-bg: #FBF3E4; --m-fg: #3A2417; --m-acc: #A4472A; --m-on-acc: #FFF6EA; --m-soft: #F1DFC4; --m-r: 999px; --m-body: 'Karla', system-ui, sans-serif; }
+.cafe .m-nav b { font-family: 'Yeseva One', Georgia, serif; font-size: 1.05rem; font-weight: 400; }
+.cafe .m-nav nav span { border-bottom: 1px dotted currentColor; }
+.cafe .c-hero { text-align: center; padding: 6px 18px 14px; display: grid; justify-items: center; gap: 8px; }
+.cafe .c-hero > svg { width: 74px; height: 62px; }
+.cafe .c-hero small { font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--m-acc); font-weight: 600; }
+.cafe .c-hero h4 { margin: 0; font-family: 'Yeseva One', Georgia, serif; font-weight: 400; font-size: clamp(1.15rem, 0.95rem + 0.9vw, 1.5rem); line-height: 1.15; max-width: 22ch; text-wrap: balance; }
+.cafe .c-menu { margin: 0 16px; padding: 12px 14px; background: var(--m-soft); border-radius: 14px; display: grid; gap: 6px; font-size: 0.8rem; }
+.cafe .c-menu p { display: flex; align-items: baseline; gap: 6px; margin: 0; }
+.cafe .c-menu p i { flex: 1; border-bottom: 2px dotted color-mix(in srgb, var(--m-fg) 35%, transparent); transform: translateY(-3px); }
+.cafe .c-menu b { font-weight: 600; }
+.cafe .m-map { justify-content: center; }
+
+/* homestay: heritage, night lake, serif */
+.mock.homestay { --m-bg: #1C2540; --m-fg: #F3EBDD; --m-acc: #C9A45C; --m-on-acc: #1C2540; --m-soft: #2A355A; --m-r: 0; --m-body: 'Lato', system-ui, sans-serif; }
+.homestay .m-nav { text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.62rem; }
+.homestay .m-nav b { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 600; font-size: 1.15rem; letter-spacing: 0.02em; text-transform: none; color: var(--m-acc); }
+.homestay .h-hero { position: relative; }
+.homestay .h-hero > svg { width: 100%; height: auto; }
+.homestay .h-copy { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); max-width: 52%; }
+.homestay .h-copy small { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--m-acc); }
+.homestay .h-copy h4 { margin: 2px 0 8px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 600; font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem); line-height: 1.1; max-width: 20ch; }
+.homestay .h-rooms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 12px 16px 0; }
+.homestay .h-rooms div { border: 1px solid var(--m-acc); padding: 8px; font-size: 0.7rem; line-height: 1.3; min-width: 0; }
+.homestay .h-rooms b { display: block; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 0.95rem; font-weight: 600; }
+.homestay .h-rooms span { color: var(--m-acc); }
+.homestay .m-btn { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.62rem; }
+
+/* clinic: clean, clinical, rounded */
+.mock.clinic { --m-bg: #FFFFFF; --m-fg: #12324A; --m-acc: #1F7FD1; --m-on-acc: #FFFFFF; --m-soft: #EAF4FD; --m-r: 10px; --m-body: 'Nunito', system-ui, sans-serif; }
+.clinic .m-nav { border-bottom: 1px solid #E3EDF6; }
+.clinic .m-nav b { font-weight: 800; font-size: 0.98rem; display: flex; align-items: center; gap: 6px; }
+.clinic .m-nav b svg { width: 18px; height: 18px; }
+.clinic .k-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 12px; padding: 14px 16px; align-items: center; }
+.clinic .k-hero small { display: inline-block; font-size: 0.66rem; font-weight: 700; color: #16825D; background: #E3F6EE; padding: 3px 8px; border-radius: 999px; }
+.clinic .k-hero h4 { margin: 6px 0 10px; font-weight: 800; font-size: clamp(1.05rem, 0.9rem + 0.8vw, 1.35rem); line-height: 1.15; }
+.clinic .k-book { background: var(--m-soft); border-radius: 14px; padding: 10px; display: grid; gap: 6px; font-size: 0.7rem; }
+.clinic .k-book b { font-size: 0.76rem; }
+.clinic .k-slots { display: flex; flex-wrap: wrap; gap: 5px; }
+.clinic .k-slots button { font: 700 0.68rem/1 'Nunito', sans-serif; padding: 6px 7px; border-radius: 8px; border: 1px solid #C9DFF3; background: #FFFFFF; color: var(--m-fg); cursor: pointer; }
+.clinic .k-slots button[aria-pressed="true"] { background: var(--m-acc); color: #FFFFFF; border-color: var(--m-acc); }
+.clinic .k-services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 0 16px; }
+.clinic .k-services div { border-radius: 12px; border: 1px solid #E3EDF6; padding: 8px; font-size: 0.7rem; min-width: 0; }
+.clinic .k-services b { display: block; font-size: 0.78rem; }
+.clinic .k-services span { color: #557089; }
+@media (max-width: 440px) {
+  .clinic .k-hero { grid-template-columns: 1fr; }
+  .m-nav nav { display: none; }
+  .homestay .h-rooms, .clinic .k-services { grid-template-columns: 1fr 1fr; }
+  .homestay .h-rooms div:last-child, .clinic .k-services div:last-child { display: none; }
+}
 
 /* bottle line */
 .line-card canvas { width: 100%; height: 200px; display: block; background: linear-gradient(var(--surface-2), var(--surface)); }
@@ -640,22 +684,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
               </div>
               <div class="browser">
                 <div class="chrome"><span class="dots"><i></i><i></i><i></i></span><span class="url">https://<b id="mock-url">chaitapri.in</b></span></div>
-                <div class="mock mari" id="mock">
-                  <div class="mock-nav"><b id="mock-name">Chai Tapri Café</b><span id="mock-links"><span>Menu</span><span>Photos</span><span>Find us</span></span></div>
-                  <div class="mock-hero">
-                    <div>
-                      <small id="mock-kicker">Rooftop café · Ambrai Ghat</small>
-                      <h4 id="mock-head">Lake views and kulhad chai, from 7 am to midnight.</h4>
-                      <div class="mock-btns"><span><svg aria-hidden="true"><use href="#i-chat"/></svg><span id="mock-cta">Order on WhatsApp</span></span><span><svg aria-hidden="true"><use href="#i-phone"/></svg>Call</span></div>
-                    </div>
-                    <svg viewBox="0 0 120 100" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="mock-art"></svg>
-                  </div>
-                  <div class="mock-cards" id="mock-cards"></div>
-                  <div class="mock-map">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="s-teal f-teals" stroke-width="2" d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle class="s-teal" stroke-width="2" cx="12" cy="9.5" r="2.5"/></svg>
-                    <span><b id="mock-place">Ambrai Ghat, Udaipur</b> · Directions on Google Maps</span>
-                  </div>
-                </div>
+                <div class="mock cafe" id="mock"></div>
               </div>
             </div>
           </div>
@@ -1052,48 +1081,60 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
     if (!reduced) setInterval(tick, 1500);
   })();
 
-  // ---------- website builder ----------
+  // ---------- website builder: three example sites, each with its own brand ----------
   (function () {
-    var art = {
-      cafe: '<path class="s-mari" stroke-width="3" d="M42 22c-3-5 3-8 0-13M56 22c-3-5 3-8 0-13"/><path class="f-surf s-ink" stroke-width="2.5" d="M28 32h48l-5 44a7 7 0 0 1-7 6H40a7 7 0 0 1-7-6z"/><path class="f-maris" d="M31 42h42l-1.3 11H32.3z"/><path class="s-ink" stroke-width="2.5" d="M76 42h5a7 7 0 0 1 0 14h-6M20 92h70"/>',
-      homestay: '<path class="f-sand s-ink" stroke-width="2.5" d="M20 88V46l38-24 38 24v42z"/><path class="f-teals s-ink" stroke-width="2" d="M34 88V66a8 8 0 0 1 16 0v22M64 56h16v14H64z"/><path class="f-maris s-ink" stroke-width="2" d="M50 34a8 8 0 0 1 16 0z"/><path class="s-ink" stroke-width="2.5" d="M12 88h96"/>',
-      clinic: '<rect class="f-surf s-ink" stroke-width="2.5" x="24" y="20" width="72" height="68" rx="10"/><path class="s-teal" stroke-width="7" d="M60 36v36M42 54h36"/><path class="s-ink" stroke-width="2.5" d="M14 92h92"/>'
-    };
+    var chat = '<svg aria-hidden="true"><use href="#i-chat"/></svg>', phone = '<svg aria-hidden="true"><use href="#i-phone"/></svg>';
+    var pin = '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="m-acc-s" stroke-width="2" d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle class="m-acc-s" stroke-width="2" cx="12" cy="9.5" r="2.5"/></svg>';
     var sites = {
-      cafe: { cls: 'mari', url: 'chaitapri.in', name: 'Chai Tapri Café', links: ['Menu', 'Photos', 'Find us'],
-        kicker: 'Rooftop café · Ambrai Ghat', head: 'Lake views and kulhad chai, from 7 am to midnight.', cta: 'Order on WhatsApp',
-        cards: [['Masala chai', '₹40'], ['Poha', '₹90'], ['Lake-view table', 'Book a spot']], place: 'Ambrai Ghat, Udaipur' },
-      homestay: { cls: '', url: 'pichola-haveli.in', name: 'Pichola Haveli Stay', links: ['Rooms', 'Photos', 'Find us'],
-        kicker: 'Old-city homestay · Gangaur Ghat', head: 'Wake up to the lake, five minutes from City Palace.', cta: 'Book on WhatsApp',
-        cards: [['Lake-view room', '₹3,200 / night'], ['Haveli room', '₹2,400 / night'], ['Airport pickup', 'On request']], place: 'Gangaur Ghat, Udaipur' },
-      clinic: { cls: '', url: 'smilecare-udaipur.in', name: 'SmileCare Dental', links: ['Treatments', 'Doctors', 'Find us'],
-        kicker: 'Dental clinic · Hiran Magri', head: 'Gentle dental care. Book your visit on WhatsApp.', cta: 'Book appointment',
-        cards: [['Check-up', '20 min'], ['Cleaning', '45 min'], ['Open', 'Mon–Sat, 10–7']], place: 'Hiran Magri, Sector 4, Udaipur' }
+      cafe: { url: 'chaitapri.in', html:
+        '<div class="m-nav"><b>Chai Tapri</b><nav><span>Menu</span><span>Photos</span><span>Find us</span></nav></div>' +
+        '<div class="c-hero"><svg viewBox="0 0 90 76" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="m-acc-s" stroke-width="3" d="M34 16c-3-5 3-8 0-12M48 16c-3-5 3-8 0-12"/><path class="m-soft-f m-st" stroke-width="2.6" d="M22 24h44l-6 40a6 6 0 0 1-6 5H34a6 6 0 0 1-6-5z"/><path class="m-acc-f" d="M25 36h38l-1 8H26z" opacity=".85"/><path class="m-st" stroke-width="2.6" d="M14 72h60"/></svg>' +
+        '<small>Rooftop café · Ambrai Ghat</small><h4>Lake views and kulhad chai, 7 am to midnight</h4>' +
+        '<div class="m-btns"><span class="m-btn">' + chat + 'Order on WhatsApp</span><span class="m-btn alt">' + phone + 'Call</span></div></div>' +
+        '<div class="c-menu"><p><b>Kulhad masala chai</b><i></i>₹40</p><p><b>Poha with sev</b><i></i>₹90</p><p><b>Lake-view table for 4</b><i></i>Book</p></div>' +
+        '<div class="m-map">' + pin + '<span><b>Ambrai Ghat, Udaipur</b> · Directions</span></div>' },
+      homestay: { url: 'pichola-haveli.in', html:
+        '<div class="m-nav"><b>Pichola Haveli</b><nav><span>Rooms</span><span>Gallery</span><span>Contact</span></nav></div>' +
+        '<div class="h-hero"><svg viewBox="0 0 400 190" aria-hidden="true">' +
+          '<rect class="m-soft-f" width="400" height="190"/>' +
+          '<circle class="m-acc-f" cx="372" cy="30" r="12" opacity=".9"/>' +
+          '<path class="m-bg-f" d="M0 120 C60 96 120 108 180 92 C250 74 320 100 400 86 V190 H0Z" opacity=".55"/>' +
+          '<g transform="translate(125 0)"><g class="m-bg-f"><rect x="60" y="70" width="70" height="56"/><rect x="130" y="54" width="80" height="72"/><rect x="210" y="76" width="60" height="50"/>' +
+          '<path d="M78 70a17 17 0 0 1 34 0z M150 54a20 20 0 0 1 40 0z M226 76a14 14 0 0 1 28 0z"/></g>' +
+          '<g class="m-acc-f" opacity=".85"><rect x="72" y="88" width="6" height="10" rx="3"/><rect x="88" y="88" width="6" height="10" rx="3"/><rect x="104" y="88" width="6" height="10" rx="3"/><rect x="146" y="72" width="6" height="10" rx="3"/><rect x="164" y="72" width="6" height="10" rx="3"/><rect x="182" y="72" width="6" height="10" rx="3"/><rect x="226" y="94" width="6" height="10" rx="3"/><rect x="244" y="94" width="6" height="10" rx="3"/></g></g>' +
+          '<rect class="m-bg-f" y="126" width="400" height="64"/>' +
+          '<path class="m-acc-s" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".6" d="M70 136h40M150 142h60M230 136h30M300 150h50"/></svg>' +
+          '<div class="h-copy"><small>Old-city homestay · Gangaur Ghat</small><h4>Wake up to the lake, five minutes from City Palace</h4>' +
+          '<div class="m-btns"><span class="m-btn">' + chat + 'Book on WhatsApp</span></div></div></div>' +
+        '<div class="h-rooms"><div><b>Lake-view room</b><span>₹3,200 / night</span></div><div><b>Jharokha room</b><span>₹2,400 / night</span></div><div><b>Airport pickup</b><span>On request</span></div></div>' +
+        '<div class="m-map">' + pin + '<span><b>Gangaur Ghat, Udaipur</b> · Directions</span></div>' },
+      clinic: { url: 'smilecare-udaipur.in', html:
+        '<div class="m-nav"><b><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="m-acc-s" stroke-width="2.2" d="M7 3c-2.5 0-4 2-4 4.5 0 3 1.5 4 2 7.5.4 3 1 6 2.5 6 2 0 1.5-5 4.5-5s2.5 5 4.5 5c1.5 0 2.1-3 2.5-6 .5-3.5 2-4.5 2-7.5C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z"/></svg>SmileCare Dental</b><nav><span>Treatments</span><span>Doctors</span><span>Contact</span></nav></div>' +
+        '<div class="k-hero"><div><small>Open today · 10 am – 7 pm</small><h4>Gentle dental care in Hiran Magri</h4>' +
+          '<div class="m-btns"><span class="m-btn">' + chat + 'WhatsApp us</span><span class="m-btn alt">' + phone + 'Call</span></div></div>' +
+          '<div class="k-book"><b>Book a visit · Tomorrow</b><div class="k-slots"><button type="button" aria-pressed="false">10:00</button><button type="button" aria-pressed="true">11:30</button><button type="button" aria-pressed="false">4:00</button><button type="button" aria-pressed="false">5:30</button></div><span>Confirmation on WhatsApp</span></div></div>' +
+        '<div class="k-services"><div><b>Check-up</b><span>20 min</span></div><div><b>Cleaning</b><span>45 min</span></div><div><b>Braces</b><span>Free consult</span></div></div>' +
+        '<div class="m-map">' + pin + '<span><b>Sector 4, Hiran Magri</b> · Directions</span></div>' }
     };
-    var mock = document.getElementById('mock'), timer = null;
-    function $(id) { return document.getElementById(id); }
+    var mock = document.getElementById('mock'), url = document.getElementById('mock-url'), timer = null;
     function fill(k) {
-      var d = sites[k];
-      mock.className = 'mock' + (d.cls ? ' ' + d.cls : '');
-      $('mock-url').textContent = d.url; $('mock-name').textContent = d.name;
-      $('mock-links').innerHTML = d.links.map(function (l) { return '<span>' + l + '</span>'; }).join('');
-      $('mock-kicker').textContent = d.kicker; $('mock-head').textContent = d.head; $('mock-cta').textContent = d.cta;
-      $('mock-art').innerHTML = art[k];
-      $('mock-cards').innerHTML = d.cards.map(function (c) { return '<div><b>' + c[0] + '</b><span>' + c[1] + '</span></div>'; }).join('');
-      $('mock-place').textContent = d.place;
+      mock.className = 'mock ' + k;
+      mock.innerHTML = sites[k].html;
+      url.textContent = sites[k].url;
+      mock.querySelectorAll('.k-slots button').forEach(function (b, i, all) {
+        b.addEventListener('click', function () { all.forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); }); });
+      });
     }
     function build(k) {
       document.querySelectorAll('#site-types .call-tab').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.site === k)); });
       if (reduced) { fill(k); return; }
       mock.classList.add('building');
-      var kids = Array.prototype.slice.call(mock.children);
       clearTimeout(timer);
       timer = setTimeout(function () {
         fill(k); mock.classList.add('building');
-        kids = Array.prototype.slice.call(mock.children);
-        kids.forEach(function (el, i) { el.style.transitionDelay = (i * 0.14) + 's'; });
-        requestAnimationFrame(function () { mock.classList.remove('building'); });
-        setTimeout(function () { kids.forEach(function (el) { el.style.transitionDelay = ''; }); }, 1200);
+        var kids = Array.prototype.slice.call(mock.children);
+        kids.forEach(function (el, i) { el.style.transitionDelay = (i * 0.15) + 's'; });
+        requestAnimationFrame(function () { requestAnimationFrame(function () { mock.classList.remove('building'); }); });
       }, 300);
     }
     document.querySelectorAll('#site-types .call-tab').forEach(function (b) { b.addEventListener('click', function () { build(b.dataset.site); }); });
